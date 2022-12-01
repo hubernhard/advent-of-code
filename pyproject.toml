@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "advent-of-code"
+version = "0.1.0"
+description = ""
+authors = ["Bernhard Huber <56220032+hubernhard@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+isort = "^5.10.1"
+flake8 = "^6.0.0"
+
+[tool.poetry.group.extras]
+optional = true
+
+[tool.poetry.group.extras.dependencies]
+pre-commit = "^2.20.0"
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
