@@ -1,6 +1,8 @@
 # Advent of Code
 
-## Setup
+My solutions to the [Advent of Code](https://adventofcode.com/) puzzles.
+
+## Development Setup
 
 Make sure [Poetry](https://python-poetry.org/docs/#installation) is installed
 on your system, clone the repository and run:
