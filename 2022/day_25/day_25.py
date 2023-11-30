@@ -28,7 +28,7 @@ class SNAFUConverter:
         decimal = 0
         for i, x in enumerate(reversed(snafu)):
             x = x.replace("-", "-1").replace("=", "-2")
-            decimal += 5 ** i * int(x)
+            decimal += 5**i * int(x)
         return decimal
 
     @staticmethod

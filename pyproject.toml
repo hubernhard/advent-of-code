@@ -3,27 +3,38 @@ name = "advent-of-code"
 version = "0.1.0"
 description = ""
 authors = ["Bernhard Huber <56220032+hubernhard@users.noreply.github.com>"]
+packages = [
+    { include = "2022" },
+    { include = "2023" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.10.0"
-isort = "^5.10.1"
-flake8 = "^6.0.0"
+ruff = "^0.1.6"
 
-[tool.poetry.group.extras]
-optional = true
-
-[tool.poetry.group.extras.dependencies]
-pre-commit = "^2.20.0"
-
-[tool.black]
+[tool.ruff]
 line-length = 79
+select = [
+    "ARG", # flake8-unused-arguments
+    "B", # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "E", # pycodestyle errors
+    "F", # pyflakes
+    "I", # isort
+    "N", # pep8-naming
+    "PTH", # flake8-use-pathlib
+    "UP", # pyupgrade
+    "W", # pycodestyle warnings
+]
+ignore = [
+    "E501", # line too long, handled by formatter
+    "W191", # Indentation contains tabs (conflicts with formatter)
+]
 
-[tool.isort]
-profile = "black"
-line_length = 79
+[tool.ruff.format]
+line-ending = "native"
 
 [build-system]
 requires = ["poetry-core"]

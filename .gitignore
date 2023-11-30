@@ -1,11 +1,29 @@
+__pycache__/
+
+# Editors
 .idea/
 .vscode/
 
-poetry.lock
-__pycache__/
+# Environments
+.env
+.venv/
+
+# MyPy
+.mypy_cache/
+
+# Pickle
+*.pickle
+*.pkl
+
+# Pytest / Coverage
 .pytest_cache/
 .coverage
 test-results.xml
 coverage.xml
 
-.env
+# Ruff
+.ruff_cache/
+
+# SQLite
+*.db
+*.sqlite

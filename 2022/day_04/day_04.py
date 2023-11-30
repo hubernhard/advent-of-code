@@ -20,7 +20,7 @@ class CampCleaner:
     @staticmethod
     def _process_pair(pair: str) -> tuple[set[int], set[int]]:
         pair = [x.split("-") for x in pair.split(",")]
-        a, b = [set(range(int(x[0]), int(x[1]) + 1)) for x in pair]
+        a, b = (set(range(int(x[0]), int(x[1]) + 1)) for x in pair)
         return a, b
 
     def solve_part1(self) -> int:
