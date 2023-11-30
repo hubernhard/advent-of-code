@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Bernhard Huber <56220032+hubernhard@users.noreply.github.com>"]
 packages = [
+    { include = "aoc" },
     { include = "2022" },
     { include = "2023" },
 ]
