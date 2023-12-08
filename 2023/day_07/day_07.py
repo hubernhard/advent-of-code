@@ -12,8 +12,6 @@ KTJJT 220
 QQQJA 483
 """
 
-CARDS = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]
-
 
 class Hand(NamedTuple):
     cards: str
@@ -23,6 +21,16 @@ class Hand(NamedTuple):
     def from_text(cls, text: str) -> Self:
         cards, bid = text.split()
         return cls(cards, int(bid))
+
+    @property
+    def replaced_cards(self) -> str:
+        cards = self.cards.replace("J", "")
+        # Get most common card that is not J
+        if len(cards) == 0:
+            most_common = "A"  # We can pick any card
+        else:
+            most_common = Counter(cards).most_common(1)[0][0]
+        return self.cards.replace("J", most_common)
 
     @staticmethod
     def _get_type_rank(counts: Counter) -> int:
@@ -41,43 +49,62 @@ class Hand(NamedTuple):
         if counts[1] == 5:
             return 1
 
-    def __lt__(self, other: Self) -> bool:
+    def _compare(
+        self, other: Self, card_order: str, replace_joker: bool = False
+    ) -> bool:
+        cards1 = self.cards if not replace_joker else self.replaced_cards
+        cards2 = other.cards if not replace_joker else other.replaced_cards
         # Get counters for types
-        t1 = Counter(Counter(self.cards).values())
-        t2 = Counter(Counter(other.cards).values())
+        t1 = Counter(Counter(cards1).values())
+        t2 = Counter(Counter(cards2).values())
 
         # Handle same types
         if t1 == t2:
             for c1, c2 in zip(self.cards, other.cards):
-                i1 = CARDS.index(c1)
-                i2 = CARDS.index(c2)
-                # Lower index is better
-                if i1 < i2:
-                    return True
+                i1 = card_order.index(c1)
+                i2 = card_order.index(c2)
+                # Lower index means stronger card
                 if i1 > i2:
+                    return True
+                if i1 < i2:
                     return False
 
-        return self._get_type_rank(t1) > self._get_type_rank(t2)
+        return self._get_type_rank(t1) < self._get_type_rank(t2)
+
+    def __lt__(self, other: Self) -> bool:
+        return self._compare(other, card_order="AKQJT98765432")
+
+
+class Hand2(Hand):
+    def __lt__(self, other: Self) -> bool:
+        return self._compare(
+            other, card_order="AKQT98765432J", replace_joker=True
+        )
 
 
 class Puzzle:
     def __init__(self, content: str):
-        self.hands = [Hand.from_text(x) for x in content.strip().split("\n")]
+        self.content = content.strip().split("\n")
+        self.hands = [Hand.from_text(x) for x in self.content]
 
     def solve_part1(self) -> int:
         total = 0
-        for rank, hand in enumerate(sorted(self.hands, reverse=True)):
+        for rank, hand in enumerate(sorted(self.hands)):
             total += (rank + 1) * hand.bid
         return total
 
     def solve_part2(self) -> int:
-        return 2
+        hands = [Hand2.from_text(x) for x in self.content]
+        total = 0
+        for rank, hand in enumerate(sorted(hands)):
+            total += (rank + 1) * hand.bid
+        return total
 
 
 if __name__ == "__main__":
     test_puzzle = Puzzle(test_content)
     assert test_puzzle.solve_part1() == 6440
-    assert test_puzzle.solve_part2() == 2
+    assert test_puzzle.solve_part2() == 5905
 
     file = Path(__file__).parent / "input.txt"
     content = file.read_text()
