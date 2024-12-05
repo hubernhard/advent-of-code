@@ -40,7 +40,9 @@ class CathodeRayTube:
     def solve_part1(self) -> int:
         cycles = range(20, 221, 40)
         x_values = [self.x_values[i - 1] for i in cycles]
-        return sum(cycle * x for cycle, x in zip(cycles, x_values))
+        return sum(
+            cycle * x for cycle, x in zip(cycles, x_values, strict=False)
+        )
 
     def solve_part2(self) -> str:
         return self.render_image()

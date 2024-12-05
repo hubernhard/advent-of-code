@@ -98,7 +98,7 @@ class Puzzle:
         # Use Trapezoid formula to compute polygon area:
         # https://en.wikipedia.org/wiki/Shoelace_formula
         total = 0
-        for p1, p2 in zip(vertices[:-1], vertices[1:]):
+        for p1, p2 in zip(vertices[:-1], vertices[1:], strict=False):
             total += (p1.y + p2.y) * (p1.x - p2.x)
         interior = abs(total // 2)
 

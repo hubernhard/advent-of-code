@@ -1,7 +1,7 @@
 """Day 8: Treetop Tree House"""
 
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator
 
 test_content = """
 30373

@@ -1,8 +1,8 @@
 """Day 3: Rucksack Reorganization"""
 
 import string
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator
 
 test_content = """
 vJrwpWtwJgWrhcsFMMfFFhFp

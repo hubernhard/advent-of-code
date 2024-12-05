@@ -87,7 +87,8 @@ class Puzzle:
 
     def solve_part2(self) -> int:
         seed_ranges = [
-            range(a, a + b) for a, b in zip(self.seeds[0::2], self.seeds[1::2])
+            range(a, a + b)
+            for a, b in zip(self.seeds[0::2], self.seeds[1::2], strict=False)
         ]
         locations = []
 

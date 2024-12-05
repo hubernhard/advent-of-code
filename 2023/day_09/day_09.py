@@ -16,7 +16,7 @@ class Puzzle:
 
     @staticmethod
     def diff(x: list[int]) -> list[int]:
-        return [b - a for a, b in zip(x[:-1], x[1:])]
+        return [b - a for a, b in zip(x[:-1], x[1:], strict=False)]
 
     def solve_part1(self) -> int:
         total = 0

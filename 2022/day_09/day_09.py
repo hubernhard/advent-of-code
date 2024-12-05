@@ -1,7 +1,8 @@
 """Day 9: Rope Bridge"""
 
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator, Self
+from typing import Self
 
 test_content = """
 R 4

@@ -1,8 +1,9 @@
 """Day 18: Boiling Boulders"""
 
 from collections import deque
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator, NamedTuple
+from typing import NamedTuple
 
 test_content = """
 2,2,2

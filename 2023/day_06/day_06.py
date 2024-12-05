@@ -17,7 +17,9 @@ class Puzzle:
 
     def solve_part1(self) -> int:
         result = 1
-        for max_time, max_distance in zip(self.max_times, self.max_distances):
+        for max_time, max_distance in zip(
+            self.max_times, self.max_distances, strict=False
+        ):
             total = 0
             for speed in range(max_time):
                 # Speed is equal to the time spent holding the button

@@ -1,8 +1,9 @@
 """Day 15: Beacon Exclusion Zone"""
 
 import re
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator, NamedTuple
+from typing import NamedTuple
 
 test_content = """
 Sensor at x=2, y=18: closest beacon is at x=-2, y=15
@@ -65,17 +66,19 @@ class BeaconFinder:
 
     def solve_part1(self, y: int) -> int:
         blocked = set()
-        for sensor, beacon in zip(self.sensors, self.beacons):
+        for sensor, beacon in zip(self.sensors, self.beacons, strict=False):
             for point in sensor.ball_slice(beacon, y):
                 blocked.add(point)
         return len(blocked)
 
     def solve_part2(self, limits: Limits) -> int:
-        dists = [s.dist(b) for s, b in zip(self.sensors, self.beacons)]
+        dists = [
+            s.dist(b) for s, b in zip(self.sensors, self.beacons, strict=False)
+        ]
         x, y = limits.xmin, limits.ymin
 
         while y <= limits.ymax:
-            for sensor, radius in zip(self.sensors, dists):
+            for sensor, radius in zip(self.sensors, dists, strict=False):
                 if sensor.dist(GridPoint(x, y)) <= radius:
                     # Move x to the right side of the current sensor's ball
                     x = sensor.x + radius - abs(sensor.y - y) + 1

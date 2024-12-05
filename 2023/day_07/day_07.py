@@ -60,7 +60,7 @@ class Hand(NamedTuple):
 
         # Handle same types
         if t1 == t2:
-            for c1, c2 in zip(self.cards, other.cards):
+            for c1, c2 in zip(self.cards, other.cards, strict=False):
                 i1 = card_order.index(c1)
                 i2 = card_order.index(c2)
                 # Lower index means stronger card

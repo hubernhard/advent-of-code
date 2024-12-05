@@ -2,8 +2,9 @@
 
 import operator
 import re
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable, NamedTuple
+from typing import NamedTuple
 
 test_content = """
 root: pppw + sjmn

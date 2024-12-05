@@ -1,9 +1,10 @@
 """Day 17: Pyroclastic Flow"""
 
+from collections.abc import Iterator
 from dataclasses import dataclass
 from itertools import cycle
 from pathlib import Path
-from typing import Iterator, NamedTuple
+from typing import NamedTuple
 
 ROCK_SHAPES = """
 ####

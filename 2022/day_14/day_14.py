@@ -1,7 +1,8 @@
 """Day 14: Regolith Reservoir"""
 
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable, NamedTuple
+from typing import NamedTuple
 
 test_content = """
 498,4 -> 498,6 -> 496,6
@@ -28,7 +29,9 @@ class ReservoirSimulator:
             positions = [
                 [int(v) for v in pair.split(",")] for pair in row.split(" -> ")
             ]
-            for (x1, y1), (x2, y2) in zip(positions[:-1], positions[1:]):
+            for (x1, y1), (x2, y2) in zip(
+                positions[:-1], positions[1:], strict=False
+            ):
                 for x in range(min(x1, x2), max(x1, x2) + 1):
                     for y in range(min(y1, y2), max(y1, y2) + 1):
                         self.blocked[GridPoint(x, y)] = "#"

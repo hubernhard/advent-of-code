@@ -35,7 +35,7 @@ class CargoCrane:
         # number
         stacks = {i: "" for i in stack_rows[0][s]}
         for row in stack_rows[1:]:
-            for i, item in zip(stacks.keys(), row[s]):
+            for i, item in zip(stacks.keys(), row[s], strict=False):
                 stacks[i] += item.strip()  # remove whitespace before appending
         return stacks
 
