@@ -1,19 +1,18 @@
-[tool.poetry]
+[project]
 name = "advent-of-code"
 version = "0.1.0"
 description = ""
-authors = ["Bernhard Huber <56220032+hubernhard@users.noreply.github.com>"]
-packages = [
-    { include = "aoc" },
-    { include = "2022" },
-    { include = "2023" },
+authors = [
+	{ name = "Bernhard Huber", email = "56220032+hubernhard@users.noreply.github.com" }
 ]
+requires-python = ">=3.13"
 
-[tool.poetry.dependencies]
-python = "^3.11"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.1.6"
+[tool.hatch.build.targets.wheel]
+packages = ["2022", "2023", "aoc"]
 
 [tool.ruff]
 line-length = 79
@@ -36,7 +35,3 @@ ignore = [
 
 [tool.ruff.format]
 line-ending = "native"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"

@@ -4,16 +4,16 @@ My solutions to the [Advent of Code](https://adventofcode.com/) puzzles.
 
 ## Setup
 
-Make sure [Poetry](https://python-poetry.org/docs/#installation) is installed
-on your system, clone the repository and run:
+Make sure [uv](https://docs.astral.sh/uv/) is installed on your system, clone
+the repository and run:
 
 ```shell
-poetry install
-pre-commit install
+uv sync --frozen
+pre-commit install --install-hooks
 ```
 
 ## Initialize a new day using the template
 
 ```shell
-poetry run python -m aoc <YEAR> <DAY>
+uv run python -m aoc <YEAR> <DAY>
 ```
