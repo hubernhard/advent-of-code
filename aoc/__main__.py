@@ -37,7 +37,7 @@ if __name__ == "__main__":
 def _add_day(year: int, day: int) -> None:
     day_ = f"day_{day:02d}"
     path = Path(str(year)) / day_
-    path.mkdir(exist_ok=True)
+    path.mkdir(exist_ok=True, parents=True)
 
     file = path / f"{day_}.py"
     if file.exists():
